@@ -1,0 +1,51 @@
+body{
+margin:0;
+text-align:center;
+font-family:Arial;
+color:white;
+background:url('background/bg.jpg') center/cover no-repeat fixed;
+background-color:black;
+overflow:hidden;
+}
+
+.hidden{display:none;}
+
+button{
+padding:15px 30px;
+font-size:20px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+#yes{background:green; position:absolute; left:40%; top:60%;}
+#no{background:red; position:absolute; left:55%; top:60%;}
+
+.glow{
+animation:glow 1s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px pink;}
+to{text-shadow:0 0 40px red;}
+}
+
+.gallery img{
+width:250px;
+margin:20px;
+border-radius:20px;
+box-shadow:0 0 20px white;
+}
+
+.proposal{
+font-size:50px;
+color:gold;
+animation:glow 1s infinite alternate;
+margin-top:40px;
+}
+
+canvas{
+position:absolute;
+top:0;
+left:0;
+}
