@@ -1,103 +1,80 @@
-var time=5;
+// floating flowers on load
+function startFlowers() {
+  setInterval(function () {
+    const flower = document.createElement("div");
+    flower.className = "flower";
+    flower.textContent = "🌸";
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(flower);
 
-var timer=setInterval(function(){
+    setTimeout(() => flower.remove(), 7000);
+  }, 300);
+}
+startFlowers();
 
-document.getElementById("timer").innerHTML=time;
+// NO button runs away
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+  const maxX = window.innerWidth - noBtn.offsetWidth;
+  const maxY = window.innerHeight - noBtn.offsetHeight;
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
 
-time--;
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+});
 
-if(time<0){
+// YES click logic
+const yesBtn = document.getElementById("yesBtn");
+const music = document.getElementById("music");
+const questionBox = document.getElementById("questionBox");
+const messageBox = document.getElementById("messageBox");
+const typeText = document.getElementById("typeText");
+const photo = document.getElementById("photo");
 
-clearInterval(timer);
+const fullMessage =
+"I knew you would say YES ❤️\n\n" +
+"My Paapu, My Kanda, My Darling, My Wife ❤️ You are my happiness, my peace, and my entire life. " +
+"With you, every moment feels magical and complete. You are not just my love… you are my forever, my home, and my future. " +
+"I promise to love you, protect you, and stand beside you in every situation forever. " +
+"I love you more than words can ever express. 🌹";
 
-document.getElementById("countdown").style.display="none";
-document.getElementById("question").style.display="block";
+const photos = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
+let charIndex = 0;
+let photoIndex = 0;
 
+yesBtn.addEventListener("click", () => {
+  // start music
+  music.play().catch(err => console.log("play error", err));
+
+  // switch screens
+  questionBox.classList.add("hidden");
+  messageBox.classList.remove("hidden");
+
+  typeText.innerHTML = "";
+  charIndex = 0;
+  photoIndex = 0;
+  photo.src = photos[photoIndex];
+
+  typeMessage();
+  cyclePhotos();
+});
+
+// typing effect
+function typeMessage() {
+  if (charIndex < fullMessage.length) {
+    typeText.innerHTML += fullMessage.charAt(charIndex);
+    charIndex++;
+    setTimeout(typeMessage, 40);
+  }
 }
 
-},1000);
-
-
-var no=document.getElementById("no");
-
-function escape(){
-
-no.style.left=Math.random()*window.innerWidth+"px";
-no.style.top=Math.random()*window.innerHeight+"px";
-
-}
-
-no.addEventListener("mouseover",escape);
-no.addEventListener("click",escape);
-
-
-document.getElementById("yes").onclick=function(){
-
-document.getElementById("question").style.display="none";
-
-document.getElementById("final").style.display="block";
-
-document.getElementById("music").play();
-
-type();
-
-fireworks();
-
-setTimeout(showProposal,8000);
-
-};
-
-
-var text="Kavya KS ❤️\n\nYou are my today, tomorrow, and forever.\n\nI love you endlessly. 💖";
-
-var i=0;
-
-function type(){
-
-if(i<text.length){
-
-document.getElementById("message").innerHTML+=text.charAt(i);
-
-i++;
-
-setTimeout(type,40);
-
-}
-
-}
-
-
-function showProposal(){
-
-document.getElementById("proposal").style.display="block";
-
-}
-
-
-function fireworks(){
-
-var canvas=document.getElementById("fireworks");
-
-var ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-
-canvas.height=window.innerHeight;
-
-setInterval(function(){
-
-ctx.fillStyle="rgba(0,0,0,0.2)";
-
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="gold";
-
-ctx.beginPath();
-
-ctx.arc(Math.random()*canvas.width,Math.random()*canvas.height,5,0,Math.PI*2);
-
-ctx.fill();
-
-},100);
-
+// change photos one by one
+function cyclePhotos() {
+  setInterval(() => {
+    photoIndex = (photoIndex + 1) % photos.length;
+    photo.src = photos[photoIndex];
+  }, 2500);
 }
