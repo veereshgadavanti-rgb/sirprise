@@ -1,47 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Veeresh ❤️ Kavya Proposal</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Will you be my Valentine? ❤️</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<audio id="music" src="music/music.mp3"></audio>
-
-<div id="countdown">
-<h1>For You Kavya KS ❤️</h1>
-<h2 id="timer">5</h2>
+<div class="overlay" id="questionBox">
+  <h1 class="title">Will you be my Valentine forever? ❤️</h1>
+  <button id="yesBtn">YES 💘</button>
+  <button id="noBtn">NO</button>
 </div>
 
-<div id="question" class="hidden">
-<h1>Kavya KS, Will you be my Valentine? ❤️</h1>
-<button id="yes">Yes 💖</button>
-<button id="no">No 😢</button>
+<div class="overlay hidden" id="messageBox">
+  <h1 id="typeText"></h1>
+  <img id="photo" src="" alt="Our memories">
 </div>
 
-<div id="final" class="hidden">
-
-<h1 class="glow">Veeresh ❤️ Kavya KS</h1>
-
-<h2 id="message"></h2>
-
-<div class="gallery">
-<img src="photos/photo1.jpg">
-<img src="photos/photo2.jpg">
-<img src="photos/photo3.jpg">
-</div>
-
-<h1 id="proposal" class="proposal hidden">
-Kavya KS 💍<br>
-Will you be mine forever?
-</h1>
-
-<canvas id="fireworks"></canvas>
-
-</div>
+<audio id="music" preload="auto">
+  <source src="music.mpeg" type="audio/mpeg">
+</audio>
 
 <script src="script.js"></script>
-
 </body>
 </html>
